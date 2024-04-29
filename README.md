@@ -49,6 +49,16 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 - [Compose courses](https://developer.android.com/courses/jetpack-compose/course)
 - [Google Developers codelabs](https://developers.google.com/learn?text=compose)
 
+### Interesting/sample projects
+
+- [JetBrains KMM samples](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-samples.html)
+- [TV maniac](https://github.com/thomaskioko/tv-maniac?tab=readme-ov-file)
+- 
+
+### K2
+
+- [Benchmark](https://blog.jetbrains.com/kotlin/2024/04/k2-compiler-performance-benchmarks-and-how-to-measure-them-on-your-projects/), [github](https://github.com/Kotlin/k2-performance-metrics)
+
 ### Testing
 
 - Test toolkit: [kotest](https://kotest.io/) - [How to use](https://test-architect.dev/junit-5-vs-kotest-part-1/)
@@ -57,6 +67,7 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 
 - [decompose](https://github.com/arkivanov/Decompose)
 - [voyager](https://github.com/adrielcafe/voyager)
+- [kotlin-inject](https://github.com/evant/kotlin-inject)
 
 ### Code style / quality / linters
 
@@ -90,9 +101,17 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 
 - Image loader: [coil](https://coil-kt.github.io/coil/compose/) (Coil 3 is KMM ready)
 
+### Logging
+
+- [kermit](https://kermit.touchlab.co/docs/)
+- [napier](https://github.com/AAkira/Napier)
+
 ### iOS setup
 
 - [SKIE](https://skie.touchlab.co/)
+
+### Wear OS
+- [Horologist](https://github.com/google/horologist) bundle of libraries for Wear OS
 
 ## Setting project
 
