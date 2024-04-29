@@ -43,6 +43,12 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 
 - [Android interview questions](https://github.com/amitshekhariitbhu/android-interview-questions)
 
+### Codelabs
+
+- [Android courses](https://developer.android.com/courses)
+- [Compose courses](https://developer.android.com/courses/jetpack-compose/course)
+- [Google Developers codelabs](https://developers.google.com/learn?text=compose)
+
 ### Testing
 
 - Test toolkit: [kotest](https://kotest.io/) - [How to use](https://test-architect.dev/junit-5-vs-kotest-part-1/)
@@ -76,8 +82,13 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 
 ### Resources / L10n / I18n
 
+- [JetBrains Compose resources](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-images-resources.html)
 - [Moko](https://moko.icerock.dev/) (resources, geo, permissions, etc)
 - [lyricist](https://github.com/adrielcafe/lyricist) resources L10n
+
+### UI
+
+- Image loader: [coil](https://coil-kt.github.io/coil/compose/) (Coil 3 is KMM ready)
 
 ### iOS setup
 
@@ -126,6 +137,37 @@ max_line_length = unset
 ```
 
 </details>
+
+## Preview
+
+Use `annotation class` to create a preview.
+
+```kotlin
+@Preview(
+    name = "Light Mode",
+    group = "Light / dark mode",
+    uiMode = Configuration.UI_MODE_NIGHT_NO
+)
+@Preview(
+    name = "Dark Mode",
+    group = "Light / dark mode",
+    uiMode = Configuration.UI_MODE_NIGHT_YES
+)
+annotation class PreviewLightDarkMode
+```
+
+Usage:
+
+```kotlin
+@PreviewFotnScale
+@PreviewLightDarkMode
+@Composable
+fun SomePreview() {
+    ...
+}
+```
+
+Will create both preview just by annotating the function. We can create same for font size, etc..
 
 ## Components
 
