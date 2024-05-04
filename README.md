@@ -53,7 +53,10 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 
 - [JetBrains KMM samples](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-samples.html)
 - [TV maniac](https://github.com/thomaskioko/tv-maniac?tab=readme-ov-file)
-- 
+
+### Design
+
+- [Material Theme Builder](https://material-foundation.github.io/material-theme-builder/)
 
 ### K2
 
@@ -90,6 +93,8 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 ### Database
 
 - [sqldelight](https://cashapp.github.io/sqldelight/)
+- [Room](https://developer.android.com/jetpack/androidx/releases/room#2.7.0-alpha01) from 2.7.0-alpha01
+- [DataStore](https://developer.android.com/jetpack/androidx/releases/datastore#1.1.1) from 1.1.0
 
 ### Resources / L10n / I18n
 
@@ -111,6 +116,7 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 - [SKIE](https://skie.touchlab.co/)
 
 ### Wear OS
+
 - [Horologist](https://github.com/google/horologist) bundle of libraries for Wear OS
 
 ## Setting project
@@ -288,13 +294,121 @@ val list = remember {
 
 #### [Animations](https://developer.android.com/develop/ui/compose/animation/introduction)
 
-How to[choose proper animation](https://developer.android.com/develop/ui/compose/animation/choose-api) type.
+How to [choose proper animation](https://developer.android.com/develop/ui/compose/animation/choose-api) type.
+
+![](https://developer.android.com/static/develop/ui/compose/images/animations/compose_animation_decision_tree_v2.jpg)
+
+[Animated graph / chart](https://youtu.be/1yiuxWK74vI?si=UUIEIhwJYrthUSL-)
 
 Use `animate[Dp|Size|Offset|*]AsState`.Animation is interruptible (can be cancelled by new animation).
 
 ``` kotlin
 val extraPadding by animateDpAsState(
-if (expanded) 48.dp else 0.dp
+    if (expanded) 48.dp else 0.dp
 )
 
 ```
+
+Expand / collapse animation for show items
+```kotlin
+AnimatedVisibility(
+    visible = expanded
+) {
+    // content
+    TextView()
+}
+```
+
+Expand / collapse same item (for example maxLines for Text item)
+```kotlin
+var expanded = remember { mutableStateOf(false) }
+Text(
+    text = "Some\nmultiline\ntext",
+    maxLines = if (expanded) Int.MAX_VALUE else 1,
+    overflow = TextOverflow.Ellipsis,
+    modifier = Modifier
+        .animateContentSize()
+        .clickable { expanded = !expanded }
+)
+```
+
+Animate content changes
+```kotlin
+AnimatedContent(
+    targetState = content,
+    transitionSpec = {
+        fadeIn(animationSpec = tween(300))
+        slideIntoContainer(animationSpec = ..., towards = Up).with(slideOutOfContainer(..., towards = Down))
+    }
+ ) { targetState ->
+    when(targetState) {
+        State.Screen1 -> Screen1()
+        State.Screen2 -> Screen2()
+    }
+}
+```
+
+Animate progress bar
+```kotlin
+val progress by animateFloatAsState(
+    targetValue = currentProgress / totalProgress.toFloat(),
+)
+
+LinearProgressIndicator(progress = progress)
+```
+
+Animate rotation (like background around image)
+```kotlin
+val infiniteTransition = rememberInfiniteTransition()
+val rotateAnimation = infiniteTransition.animateFloat(
+    initialValue = 0f,
+    targetValue = 360f,
+    animationSpec = infiniteRepeatable(
+        animation = tween(1000, easing = LinearEasing),
+        easing = LinearEasing
+    )
+)
+
+Image(
+    modifier = Modifier
+        .drawBehind {
+            rotate(rotateAnimation.value) {
+                drawCircle(rainbowColorBrush, style = Stroke(borderWidth))
+            }
+        }
+        .padding(borderWidth)
+        .clip(CircleShape)
+    
+)
+```
+
+#### [Shapes](https://m3.material.io/styles/shape/overview)
+```kotlin
+    modifier = modifier
+        .background(MaterialTheme.colorScheme.background, shape = CircleShape) // for search bars, icons, etc... circle whole item
+        .background(MaterialTheme.colorScheme.background, shape = MaterialTheme.shapes.medium) // rounded corners
+)
+```
+
+Gradient cut border shape for inputs, etc...
+```kotlin
+val Gradient = listOf(...)
+Modifier
+    .border(
+        border = BorderStroke(
+            width = 2.dp,
+            brush = Brush.linearGradient(Gradient)
+        ),
+        shape = CutCornerShape(8.dp)
+    )
+```
+
+Gradient for cursor while typing in input field.
+```kotlin
+val Gradient = listOf(...)
+        
+BasicTextField(
+    cursorBrush = Brush.linearGradient(Gradient)
+```
+
+#### [Typography](https://m3.material.io/styles/typography/overview)
