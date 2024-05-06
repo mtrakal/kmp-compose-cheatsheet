@@ -43,6 +43,8 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 
 - [Android interview questions](https://github.com/amitshekhariitbhu/android-interview-questions)
 
+- [Android developers on Youtube](https://www.youtube.com/@AndroidDevelopers)
+
 ### Codelabs
 
 - [Android courses](https://developer.android.com/courses)
@@ -118,6 +120,10 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 ### Wear OS
 
 - [Horologist](https://github.com/google/horologist) bundle of libraries for Wear OS
+
+### Dependencies
+- [Renovate](https://github.com/renovatebot/renovate?tab=readme-ov-file#github)
+- [Dependabot](https://github.com/dependabot/dependabot-core)
 
 ## Setting project
 
@@ -237,6 +243,27 @@ fun LazyColumnList() {
 }
 ```
 
+### Usage
+
+#### Composable as a parameter to reduce parameters
+
+[![Thinking in Compose](https://img.youtube.com/vi/SMOhl9RK0BA/0.jpg)](https://youtu.be/SMOhl9RK0BA?t=543)
+
+We can pass composable lambda function as a parameter to split the code into smaller parts.
+
+```kotlin
+@Composable
+fun SomeComposable(
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
+) {
+    Surface(modifier = modifier) {
+        content()
+    }
+}
+
+```
+
 #### Remember state
 
 `remembered` is used to remember the state of a composable function.
@@ -292,6 +319,59 @@ val list = remember {
 }
 ```
 
+#### [Hoisting](https://developer.android.com/develop/ui/compose/state-hoisting)
+
+Hoist state to at least **the lowest common ancestor** of the composable functions that need to access it.
+
+The lowest common ancestor can also be outside of the Composition. For example, when hoisting state in a `ViewModel` because business logic is involved.
+
+#### State
+
+Should be stored as close as possible to the composable function that uses it. Or use hoisting.
+
+- For simple states, we can use `remember` or `mutableStateOf`.
+- For more complex states we can use State Holders (simple kotlin class).
+- For states that are shared between multiple composable functions, we use `ViewModel`.
+- For states that require business logic, we use `ViewModel`.
+
+We can transform `Flow` to `State` by using `collectAsState()` to keeps track of state changes.
+
+```kotlin
+class ScreenViewModel {
+    val flow: Flow<String> = flowOf("Some text")
+}
+
+@Composable
+fun Screen(viewModel: ScreenViewModel) {
+    val state by viewModel.flow.collectAsState()
+}
+```
+
+#### [Stability](https://developer.android.com/develop/ui/compose/performance/stability) - Annotation `@Stable` and `@Immutable`
+
+Annotations are used to optimize the performance of Compose. It don't need recompose in case that compose function know, that data will not change.
+
+When we mark class as `@Immutable` we create an agreement, that data will never change in that class. If we need to change something, we need to create a new instance of that class (using `copy` for example...)
+
+Be careful with `@Immutable` annotation, because it is preferred before checking what happen with data inside class. We can violate the contract and get unexpected behavior.
+For example we change data in `List` or `Map` inside `@Immutable` class! This can't happen.
+
+```kotlin
+@Immutable
+class Data {
+    val isVariableImmutable = true
+}
+```
+
+When we mark class as `@Stable` we create an agreement, that we will notify Compose function about data changes using `mutableStateOf()`.
+
+```kotlin
+@Stable
+class Data {
+    var isVariableStable by mutableStateOf(false)
+}
+```
+
 #### [Animations](https://developer.android.com/develop/ui/compose/animation/introduction)
 
 How to [choose proper animation](https://developer.android.com/develop/ui/compose/animation/choose-api) type.
@@ -310,6 +390,7 @@ val extraPadding by animateDpAsState(
 ```
 
 Expand / collapse animation for show items
+
 ```kotlin
 AnimatedVisibility(
     visible = expanded
@@ -320,6 +401,7 @@ AnimatedVisibility(
 ```
 
 Expand / collapse same item (for example maxLines for Text item)
+
 ```kotlin
 var expanded = remember { mutableStateOf(false) }
 Text(
@@ -333,6 +415,7 @@ Text(
 ```
 
 Animate content changes
+
 ```kotlin
 AnimatedContent(
     targetState = content,
@@ -340,8 +423,8 @@ AnimatedContent(
         fadeIn(animationSpec = tween(300))
         slideIntoContainer(animationSpec = ..., towards = Up).with(slideOutOfContainer(..., towards = Down))
     }
- ) { targetState ->
-    when(targetState) {
+) { targetState ->
+    when (targetState) {
         State.Screen1 -> Screen1()
         State.Screen2 -> Screen2()
     }
@@ -349,6 +432,7 @@ AnimatedContent(
 ```
 
 Animate progress bar
+
 ```kotlin
 val progress by animateFloatAsState(
     targetValue = currentProgress / totalProgress.toFloat(),
@@ -358,6 +442,7 @@ LinearProgressIndicator(progress = progress)
 ```
 
 Animate rotation (like background around image)
+
 ```kotlin
 val infiniteTransition = rememberInfiniteTransition()
 val rotateAnimation = infiniteTransition.animateFloat(
@@ -378,19 +463,21 @@ Image(
         }
         .padding(borderWidth)
         .clip(CircleShape)
-    
+
 )
 ```
 
 #### [Shapes](https://m3.material.io/styles/shape/overview)
+
 ```kotlin
     modifier = modifier
-        .background(MaterialTheme.colorScheme.background, shape = CircleShape) // for search bars, icons, etc... circle whole item
-        .background(MaterialTheme.colorScheme.background, shape = MaterialTheme.shapes.medium) // rounded corners
+    .background(MaterialTheme.colorScheme.background, shape = CircleShape) // for search bars, icons, etc... circle whole item
+    .background(MaterialTheme.colorScheme.background, shape = MaterialTheme.shapes.medium) // rounded corners
 )
 ```
 
 Gradient cut border shape for inputs, etc...
+
 ```kotlin
 val Gradient = listOf(...)
 Modifier
@@ -404,9 +491,10 @@ Modifier
 ```
 
 Gradient for cursor while typing in input field.
+
 ```kotlin
 val Gradient = listOf(...)
-        
+
 BasicTextField(
     cursorBrush = Brush.linearGradient(Gradient)
 ```
