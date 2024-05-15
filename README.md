@@ -43,7 +43,9 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 
 - [Android interview questions](https://github.com/amitshekhariitbhu/android-interview-questions)
 
+
 - [Android developers on Youtube](https://www.youtube.com/@AndroidDevelopers)
+- [News in Google KMP 2024-05-14](https://android-developers.googleblog.com/2024/05/android-support-for-kotlin-multiplatform-to-share-business-logic-across-mobile-web-server-desktop.html)
 
 ### Codelabs
 
@@ -95,7 +97,7 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 ### Database
 
 - [sqldelight](https://cashapp.github.io/sqldelight/)
-- [Room](https://developer.android.com/kotlin/multiplatform/room) from [2.7.0-alpha01](https://developer.android.com/jetpack/androidx/releases/room#2.7.0-alpha01) / 
+- [Room](https://developer.android.com/kotlin/multiplatform/room) from [2.7.0-alpha01](https://developer.android.com/jetpack/androidx/releases/room#2.7.0-alpha01) /
 - [DataStore](https://developer.android.com/jetpack/androidx/releases/datastore#1.1.1) from 1.1.0
 
 ### Resources / L10n / I18n
@@ -122,6 +124,7 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 - [Horologist](https://github.com/google/horologist) bundle of libraries for Wear OS
 
 ### Dependencies
+
 - [Renovate](https://github.com/renovatebot/renovate?tab=readme-ov-file#github)
 - [Dependabot](https://github.com/dependabot/dependabot-core)
 
@@ -351,7 +354,8 @@ fun Screen(viewModel: ScreenViewModel) {
 
 Annotations are used to optimize the performance of Compose. It don't need recompose in case that compose function know, that data will not change.
 
-When we mark class as `@Immutable` we create an agreement, that data will never change in that class. If we need to change something, we need to create a new instance of that class (using `copy` for example...)
+When we mark class as `@Immutable` we create an agreement, that data will never change in that class. If we need to change something, we need to create a new instance of that class (using `copy` for
+example...)
 
 Be careful with `@Immutable` annotation, because it is preferred before checking what happen with data inside class. We can violate the contract and get unexpected behavior.
 For example we change data in `List` or `Map` inside `@Immutable` class! This can't happen.
@@ -500,3 +504,20 @@ BasicTextField(
 ```
 
 #### [Typography](https://m3.material.io/styles/typography/overview)
+
+#### Adaptive UI
+
+- [Google blogpost 2024-05-14](https://android-developers.googleblog.com/2024/05/get-big-picture-with-large-screens-at-google-io-24.html)
+- [Window size classes](https://developer.android.com/develop/ui/compose/layouts/adaptive/window-size-classes)
+- [Material 3 Adaptive](https://developer.android.com/jetpack/androidx/releases/compose-material3-adaptive)
+
+```kotlin
+@Composable
+fun MyApp(
+    windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+) {
+    // Perform logic on the size class to decide whether to show the top app bar.
+    val showTopAppBar = windowSizeClass.windowHeightSizeClass != WindowHeightSizeClass.COMPACT
+    ...
+}
+```
