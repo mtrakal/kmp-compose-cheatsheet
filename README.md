@@ -95,7 +95,7 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 ### Database
 
 - [sqldelight](https://cashapp.github.io/sqldelight/)
-- [Room](https://developer.android.com/jetpack/androidx/releases/room#2.7.0-alpha01) from 2.7.0-alpha01
+- [Room](https://developer.android.com/kotlin/multiplatform/room) from [2.7.0-alpha01](https://developer.android.com/jetpack/androidx/releases/room#2.7.0-alpha01) / 
 - [DataStore](https://developer.android.com/jetpack/androidx/releases/datastore#1.1.1) from 1.1.0
 
 ### Resources / L10n / I18n
