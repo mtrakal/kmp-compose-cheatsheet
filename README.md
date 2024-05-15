@@ -246,9 +246,9 @@ fun LazyColumnList() {
 }
 ```
 
-### Usage
+## Usage
 
-#### Composable as a parameter to reduce parameters
+### Composable as a parameter to reduce parameters
 
 [![Thinking in Compose](https://img.youtube.com/vi/SMOhl9RK0BA/0.jpg)](https://youtu.be/SMOhl9RK0BA?t=543)
 
@@ -267,7 +267,7 @@ fun SomeComposable(
 
 ```
 
-#### Remember state
+### Remember state
 
 `remembered` is used to remember the state of a composable function.
 It is used to store the state of a composable function and recompose the composable function when the state changes.
@@ -322,13 +322,13 @@ val list = remember {
 }
 ```
 
-#### [Hoisting](https://developer.android.com/develop/ui/compose/state-hoisting)
+### [Hoisting](https://developer.android.com/develop/ui/compose/state-hoisting)
 
 Hoist state to at least **the lowest common ancestor** of the composable functions that need to access it.
 
 The lowest common ancestor can also be outside of the Composition. For example, when hoisting state in a `ViewModel` because business logic is involved.
 
-#### State
+### State
 
 Should be stored as close as possible to the composable function that uses it. Or use hoisting.
 
@@ -350,7 +350,7 @@ fun Screen(viewModel: ScreenViewModel) {
 }
 ```
 
-#### [Stability](https://developer.android.com/develop/ui/compose/performance/stability) - Annotation `@Stable` and `@Immutable`
+### [Stability](https://developer.android.com/develop/ui/compose/performance/stability) - Annotation `@Stable` and `@Immutable`
 
 Annotations are used to optimize the performance of Compose. It don't need recompose in case that compose function know, that data will not change.
 
@@ -376,7 +376,7 @@ class Data {
 }
 ```
 
-#### [Animations](https://developer.android.com/develop/ui/compose/animation/introduction)
+### [Animations](https://developer.android.com/develop/ui/compose/animation/introduction)
 
 How to [choose proper animation](https://developer.android.com/develop/ui/compose/animation/choose-api) type.
 
@@ -471,7 +471,7 @@ Image(
 )
 ```
 
-#### [Shapes](https://m3.material.io/styles/shape/overview)
+### [Shapes](https://m3.material.io/styles/shape/overview)
 
 ```kotlin
     modifier = modifier
@@ -503,9 +503,9 @@ BasicTextField(
     cursorBrush = Brush.linearGradient(Gradient)
 ```
 
-#### [Typography](https://m3.material.io/styles/typography/overview)
+### [Typography](https://m3.material.io/styles/typography/overview)
 
-#### Adaptive UI
+### Adaptive UI
 
 - [Google blogpost 2024-05-14](https://android-developers.googleblog.com/2024/05/get-big-picture-with-large-screens-at-google-io-24.html)
 - [Window size classes](https://developer.android.com/develop/ui/compose/layouts/adaptive/window-size-classes)
