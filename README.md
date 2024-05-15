@@ -1,8 +1,8 @@
 # Kotlin Multiplatform + Compose cheatsheet
 
 This cheat sheet is primarily focused on the Jetpack Compose part of Android plus on the Kotlin Multiplatform projects.
-So, not all described can be used for multiplatform projects, but most of them can be used in Android projects based on KMM + Compose.
-It's a good start for multiplatform projects when we migrate existing Android projects to KMM.
+So, not all described can be used for multiplatform projects, but most of them can be used in Android projects based on KMP + Compose.
+It's a good start for multiplatform projects when we migrate existing Android projects to KMP.
 
 ## What is Compose?
 
@@ -53,7 +53,7 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 
 ### Interesting/sample projects
 
-- [JetBrains KMM samples](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-samples.html)
+- [JetBrains KMP samples](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-samples.html)
 - [TV maniac](https://github.com/thomaskioko/tv-maniac?tab=readme-ov-file)
 
 ### Design
@@ -106,7 +106,7 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 
 ### UI
 
-- Image loader: [coil](https://coil-kt.github.io/coil/compose/) (Coil 3 is KMM ready)
+- Image loader: [coil](https://coil-kt.github.io/coil/compose/) (Coil 3 is KMP ready)
 
 ### Logging
 
