@@ -57,6 +57,10 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 
 - [JetBrains KMP samples](https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-samples.html)
 - [TV maniac](https://github.com/thomaskioko/tv-maniac?tab=readme-ov-file)
+- [Clean architecture for Android](https://github.com/EranBoudjnah/CleanArchitectureForAndroid)
+- [Pokedex Compose](https://github.com/skydoves/pokedex-compose/tree/main)
+- [Android showcase](https://github.com/igorwojda/android-showcase)
+- [Compose playground](https://github.com/Foso/Jetpack-Compose-Playground) - [web](https://foso.github.io/Jetpack-Compose-Playground/)
 
 ### Design
 
@@ -69,6 +73,7 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 ### Testing
 
 - Test toolkit: [kotest](https://kotest.io/) - [How to use](https://test-architect.dev/junit-5-vs-kotest-part-1/)
+- [Marathon](https://github.com/MarathonLabs/marathon) - Cross platform test runner
 
 ### DI
 
@@ -88,6 +93,14 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 
 - [acompanist](https://github.com/google/accompanist) - Android
   only? - [permissions](https://github.com/google/accompanist/blob/main/permissions), [navigation](https://github.com/google/accompanist/blob/main/navigation-material), [adaptive screens](https://google.github.io/accompanist/adaptive/)
+
+### Navigation
+
+- [Compose Navixgation Library](https://developer.android.com/jetpack/compose/navigation), [releases](https://developer.android.com/jetpack/androidx/releases/navigation), [video by Philipp Lackner](https://www.youtube.com/watch?v=AIC_OFQ1r3k)
+
+```kotlin
+  implementation("androidx.navigation:navigation-compose:$nav_version")
+```
 
 ### Networking
 
@@ -114,6 +127,10 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 
 - [kermit](https://kermit.touchlab.co/docs/)
 - [napier](https://github.com/AAkira/Napier)
+
+### Security
+
+- [Bytemask](https://github.com/PatilShreyas/bytemask)
 
 ### iOS setup
 
