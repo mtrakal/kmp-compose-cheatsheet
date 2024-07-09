@@ -88,6 +88,7 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 - [ktlint](https://pinterest.github.io/ktlint/latest/)
 - [ktlint-compose-rules](https://mrmans0n.github.io/compose-rules/ktlint/)
 - [danger](https://danger.systems/kotlin/)
+- [kotlinx-kover](https://github.com/Kotlin/kotlinx-kover) Kotlin code coverage tool like JaCoco 
 
 ### Helpers
 
