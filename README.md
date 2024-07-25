@@ -146,6 +146,10 @@ Compose is a modern toolkit for building native Android UI. It simplifies and ac
 - [Renovate](https://github.com/renovatebot/renovate?tab=readme-ov-file#github)
 - [Dependabot](https://github.com/dependabot/dependabot-core)
 
+### Gradle configuration
+
+- [Gradle setup for big projects](https://github.com/jjohannes/gradle-project-setup-howto?tab=readme-ov-file)
+
 ## Setting project
 
 <details>
